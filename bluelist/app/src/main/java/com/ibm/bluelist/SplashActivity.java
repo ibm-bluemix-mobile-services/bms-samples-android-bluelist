@@ -1,0 +1,96 @@
+package com.ibm.bluelist;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.cloudant.sync.notifications.ReplicationCompleted;
+import com.cloudant.sync.notifications.ReplicationErrored;
+import com.cloudant.sync.replication.Replicator;
+import com.google.common.eventbus.Subscribe;
+import com.ibm.mobileclientaccess.clientsdk.android.auth.google.GoogleAuthenticationManager;
+import com.ibm.mobilefirstplatform.clientsdk.android.core.api.Response;
+import com.ibm.mobilefirstplatform.clientsdk.android.core.api.ResponseListener;
+import com.ibm.mobilefirstplatform.clientsdk.android.security.api.AuthorizationManager;
+import com.ibm.mobilefirstplatform.clientsdk.android.security.facebookauthentication.FacebookAuthenticationManager;
+
+import org.json.JSONObject;
+
+/**
+ * The {@code SplashActivity} is the splash dialog shown when the app is created for the first time.
+ * During the splash, the BlueListApplication global variables are initialized and data is replicated from the remote database.
+ */
+public class SplashActivity extends Activity implements ResponseListener{
+    private static final String TAG = SplashActivity.class.getCanonicalName();
+
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_launch_screen);
+
+        Typeface IBMFont = Typeface.createFromAsset(getAssets(), "fonts/helvetica-neue-light.ttf");
+
+        TextView list = (TextView) findViewById(R.id.CopyrightText);
+        list.setTypeface(IBMFont);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        // Initialize application components
+        Toast.makeText(getBaseContext(), "Initializing...", Toast.LENGTH_LONG).show();
+        BlueListApplication.getInstance();
+        AuthorizationManager.getInstance().obtainAuthorizationHeader(this, this);
+    }
+
+    /**
+     * Handles response after attempting Facebook or Google login
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        FacebookAuthenticationManager.getInstance().onActivityResultCalled(requestCode, resultCode, data);
+        GoogleAuthenticationManager.getInstance().onActivityResultCalled(requestCode, resultCode, data);
+    }
+
+    //ResponseListener
+    @Override
+    public void onSuccess(Response response) {
+        BlueListApplication.getInstance().initialize();
+
+        // Register a listener for pull replication
+        final Replicator pullReplicator = BlueListApplication.getInstance().getPullReplicator();
+        pullReplicator.getEventBus().register(new Object(){
+
+            // Launch MainActivity when replication completes
+            @Subscribe
+            public void complete(ReplicationCompleted event) {
+                pullReplicator.getEventBus().unregister(this);
+                Log.d(TAG, String.format("Pull replication complete. %d documents replicated.", event.documentsReplicated));
+
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+            @Subscribe
+            public void error(ReplicationErrored event) {
+                throw new RuntimeException(event.errorInfo.getException());
+            }
+        });
+
+        // Start pull replication
+        pullReplicator.start();
+    }
+
+    @Override
+    public void onFailure(Response response, Throwable t, JSONObject extendedInfo) {
+        Log.e("SplashActivityLoginFail", "Failed to login: Response: " + response.getResponseText() + ", Message: " + t.getMessage() + ", More: " + extendedInfo.toString());
+    }
+}
+
+
