@@ -43,25 +43,25 @@ dependencies {
 
     compile group: 'com.ibm.mobilefirstplatform.clientsdk.android',
             name: 'core',
-            version: '1.0.0-SNAPSHOT',
+            version: '1.0.+',
             ext: 'aar',
             transitive: true
 
     compile group: 'com.ibm.mobilefirstplatform.clientsdk.android',
             name: 'push',
-            version: '1.0.0-SNAPSHOT',
+            version: '1.0.+',
             ext: 'aar',
             transitive: true
 
     compile group:'com.ibm.mobilefirstplatform.clientsdk.android',
             name:'googleauthentication',
-            version: '1.0.0-SNAPSHOT',
+            version: '1.0.+',
             ext: 'aar',
             transitive: true
 
     compile group: 'com.ibm.mobilefirstplatform.clientsdk.android',
             name:'facebookauthentication',
-            version: '1.0.0-SNAPSHOT',
+            version: '1.0.+',
             ext:'aar',
             transitive: true
 
