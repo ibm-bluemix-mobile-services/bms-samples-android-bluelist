@@ -23,6 +23,7 @@ import org.json.JSONObject;
 /**
  * The {@code SplashActivity} is the splash dialog shown when the app is created for the first time.
  * During the splash, the BlueListApplication global variables are initialized and data is replicated from the remote database.
+ * Authentication is also started in BlueListApplication.java while this activity obtains the auth header and handles the response if using Google or Facebook auth via ResponseListener implementation.
  */
 public class SplashActivity extends Activity implements ResponseListener{
     private static final String TAG = SplashActivity.class.getCanonicalName();
