@@ -90,7 +90,13 @@ public class SplashActivity extends Activity implements ResponseListener{
 
     @Override
     public void onFailure(Response response, Throwable t, JSONObject extendedInfo) {
-        Log.e("SplashActivityLoginFail", "Failed to login: Response: " + response.getResponseText() + ", Message: " + t.getMessage() + ", More: " + extendedInfo.toString());
+        if(response != null) {
+            Log.e("SplashActivityLoginFail", "Failed to login: Response: " + response.getResponseText());
+        }else if (t != null){
+            Log.e("SplashActivityLoginFail", "Failed to login: Throwable: " + t.getMessage());
+        }else if (extendedInfo != null){
+            Log.e("SplashActivityLoginFail", "Failed to login: ExtendedInfo: " + extendedInfo.toString());
+        }
     }
 }
 
