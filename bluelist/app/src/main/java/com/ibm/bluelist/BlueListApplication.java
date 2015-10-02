@@ -130,8 +130,26 @@ public class BlueListApplication extends Application {
      */
     public void initialize() {
         if (mDatastore == null) {
-            configureDatastore();
-            configureReplicators();
+            final CountDownLatch latch = new CountDownLatch(1);
+
+            enroll(new Callback() {
+            @Override
+            public void success(Object object) {
+                configureDatastore();
+                configureReplicators();
+                latch.countDown();
+            }
+
+            @Override
+            public void error(Throwable e) {
+                throw new RuntimeException(e);
+            }
+                });
+            try {
+                latch.await();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -435,7 +453,7 @@ public class BlueListApplication extends Application {
         };
 
         if (enable) {
-            push.register(listener);
+            push.register("BlueListDemoUser", listener);
         } else {
             push.unregisterDevice(listener);
         }
