@@ -3,6 +3,7 @@ package com.ibm.bluelist;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.util.Log;
@@ -38,6 +39,8 @@ import com.ibm.mobilefirstplatform.clientsdk.android.security.api.Authentication
 import com.ibm.mobilefirstplatform.clientsdk.android.security.api.AuthenticationListener;
 import com.ibm.mobilefirstplatform.clientsdk.android.security.api.AuthorizationManager;
 import com.ibm.mobilefirstplatform.clientsdk.android.security.facebookauthentication.FacebookAuthenticationManager;
+
+import net.sqlcipher.database.SQLiteDatabase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -206,6 +209,9 @@ public class BlueListApplication extends Application {
 
         AuthorizationManager.createInstance(this);
 
+        //***Uncomment below to enable encryption***
+        //SQLiteDatabase.loadLibs(this);
+
         // Initialize DatastoreManager
         File path = getDir(DATASTORE_DIR_NAME, MODE_PRIVATE);
         mDatastoreManager = new DatastoreManager(path.getAbsolutePath());
@@ -335,17 +341,6 @@ public class BlueListApplication extends Application {
         try {
             mDatastore = mDatastoreManager.openDatastore(mRemoteDatabaseName, mKeyProvider);
         } catch (DatastoreNotCreatedException e) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    new AlertDialog.Builder(getApplicationContext())
-                            .setTitle("Error")
-                            .setCancelable(true)
-                            .setMessage("Could not create an encrypted local store with credentials provided. Check the encryptionPassword in the bluelist.plist file.")
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .show();
-                }
-            });
             throw new RuntimeException(e);
         }
 
@@ -453,7 +448,7 @@ public class BlueListApplication extends Application {
         };
 
         if (enable) {
-            push.register("BlueListDemoUser", listener);
+            push.register(listener);
         } else {
             push.unregisterDevice(listener);
         }
@@ -526,6 +521,7 @@ public class BlueListApplication extends Application {
                         String host = cloudantAccess.getString(HOST_KEY);
                         int port = cloudantAccess.getInt(PORT_KEY);
                         mRemoteDatabaseName = json.getString(DATABASE_KEY);
+
                         mRemoteDatabaseURI = new URI(protocol + "://" + host + "/" + mRemoteDatabaseName);
 
                         mSessionCookie = json.getString(SESSION_COOKIE_KEY);

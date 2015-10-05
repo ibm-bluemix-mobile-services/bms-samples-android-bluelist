@@ -45,6 +45,7 @@ public class SplashActivity extends Activity implements ResponseListener{
         // Initialize application components
         Toast.makeText(getBaseContext(), "Initializing...", Toast.LENGTH_LONG).show();
         BlueListApplication.getInstance();
+
         AuthorizationManager.getInstance().obtainAuthorizationHeader(this, this);
     }
 
@@ -54,8 +55,14 @@ public class SplashActivity extends Activity implements ResponseListener{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        FacebookAuthenticationManager.getInstance().onActivityResultCalled(requestCode, resultCode, data);
-        GoogleAuthenticationManager.getInstance().onActivityResultCalled(requestCode, resultCode, data);
+        String fb = getString(R.string.facebook_app_id);
+        if (!fb.isEmpty()){
+            Log.w("SplashActivity", "The facebook app id value in strings.xml is not empty. This may cause a null pointer if Google auth is configured on the backend.");
+            FacebookAuthenticationManager.getInstance().onActivityResultCalled(requestCode, resultCode, data);
+        }
+        else{
+            GoogleAuthenticationManager.getInstance().onActivityResultCalled(requestCode, resultCode, data);
+        }
     }
 
     //ResponseListener
