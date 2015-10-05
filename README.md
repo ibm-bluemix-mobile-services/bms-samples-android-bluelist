@@ -94,11 +94,11 @@ To enable encryption of local data you must complete the following:
 Download the [SQLCipher](https://www.zetetic.net/sqlcipher/open-source/) for Android v3.2 `.jar` and `.so` binary files and include them in your application as described below:
 
 Add the downloaded binaries to the appropriate folders within your app structure:
-	- Add the shared library files and `SQLCipher JAR` file to the `jniLibs` folder under your Android app directory.
-	- Add the required `ICU ZIP` file to your app `assets` folder.
-	- Add `sqlcipher.jar` as a file dependency. You can use the Dependencies tab under Open Module Settings, from the context menu of the Android Studio app folder. (This is done in the build.gradle file for you already)
-	- Uncomment the `keyProviderPw` in the `bluelist.properties` file.
-	- Before creating the database for the first time, change the value to a new password.
+- Add the shared library files and `SQLCipher JAR` file to the `jniLibs` folder under your Android app directory.
+- Add the required `ICU ZIP` file to your app `assets` folder.
+- Add `sqlcipher.jar` as a file dependency. You can use the Dependencies tab under Open Module Settings, from the context menu of the Android Studio app folder. (This is done in the build.gradle file for you already)
+- Uncomment the `keyProviderPw` in the `bluelist.properties` file.
+- Before creating the database for the first time, change the value to a new password.
 
 To use `SQLCipher` commercially, you must obtain the necessary license.
 
