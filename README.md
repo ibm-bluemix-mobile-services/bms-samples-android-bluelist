@@ -22,7 +22,7 @@ Before you can run the Bluelist application, you must set up an app on Bluemix. 
 	- Copy the Server key you just created and the GCM Project number into the Push Notifications configuration dashboard
 
 ### Deploy the Bluelist NodeJS application to Bluemix (If using Custom Auth)
-You must use the Node.js runtime to host the Bluelist NodeJS custom auth application. Cloudant recommends operations that need 'admin' access to be performed in server side code.  A sample Node.js app for Bluelist is included in this repository.
+You **must** use the Node.js runtime to host the Bluelist NodeJS application. Cloudant recommends operations that need 'admin' access to be performed in server side code.  A sample Node.js app for Bluelist is included in this repository.
 
 Update the name, host and domain in the [NodeJS/manifest.yml](NodeJS/manifest.yml) file to match your Bluemix backend.
 
@@ -70,15 +70,13 @@ In the Bluelist sample navigate to the strings.xml (`bms-samples-android-bluelis
 
 [Learn more about using Facebook as an identity provider](https://www.ng.bluemix.net/docs/#services/mobileaccess/security/id_provs/index-gentopic2.html#usingfacebookauthentication)    
 
+For the Bluelist sample, you will need to make sure your Google Play package name in your Facebook app is `com.ibm.bluelist` and that your class name is `com.ibm.bluelist.SplashActivity`.
+
 ####Google authentication
-
-
 
 [Learn more about using Google as an identity provider](https://www.ng.bluemix.net/docs/#services/mobileaccess/security/id_provs/index-gentopic2.html#google_auth)
 
 ####Custom authentication
-
-If you have pushed the NodeJS app included in this sample.
 
  - Select Custom Auth from the MCA dashboard.
  - Enter `customAuthRealm_1` and your Bluemix App route respectively
