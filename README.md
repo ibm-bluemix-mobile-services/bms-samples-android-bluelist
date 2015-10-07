@@ -69,13 +69,13 @@ From MCA Dashboard select Facebook and enter your FB appID.
 In the Bluelist sample navigate to the strings.xml (`bms-samples-android-bluelist\bluelist\app\src\main\res\values\strings.xml`) and enter the same Facebook AppId to the ```facebook_app_id``` value.
 **Note:** If you switch from Facebbok auth to Google auth, make sure the ```facebook_app_id``` value is empty or else the Response Listeners will conflict and throw null pointer errors.
 
-[Learn more about using Facebook as an identity provider](https://www.ng.bluemix.net/docs/#services/mobileaccess/security/id_provs/index-gentopic2.html#usingfacebookauthentication)    
+[Learn more about using Facebook as an identity provider](https://www.ng.bluemix.net/docs/services/mobileaccess/security/facebook/t_fb_config.html)    
 
 For the Bluelist sample, you will need to make sure your Google Play package name in your Facebook app is `com.ibm.bluelist` and that your class name is `com.ibm.bluelist.SplashActivity`.
 
 ####Google authentication
 
-[Learn more about using Google as an identity provider](https://www.ng.bluemix.net/docs/#services/mobileaccess/security/id_provs/index-gentopic2.html#google_auth)
+[Learn more about using Google as an identity provider](https://www.ng.bluemix.net/docs/services/mobileaccess/security/google/t_google_config.html)
 
 ####Custom authentication
 
@@ -84,7 +84,7 @@ For the Bluelist sample, you will need to make sure your Google Play package nam
 
 The User `Yotem` with password `456` is hard coded into the sample and will authenticate automatically.
 
-[Learn more about configuring a custom identity provider](https://www.ng.bluemix.net/docs/#services/mobileaccess/security/id_provs/index-gentopic2.html#custom_id_prov)
+[Learn more about configuring a custom identity provider](https://www.ng.bluemix.net/docs/services/mobileaccess/security/custom/r_custom_auth.html)
 
 ### Enabling Encryption:
 
