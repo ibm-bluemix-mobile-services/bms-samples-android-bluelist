@@ -67,7 +67,6 @@ A valid FacebookAppId needs to be configured in the MCA Dashboard.
 From MCA Dashboard select Facebook and enter your FB appID.
 
 In the Bluelist sample navigate to the strings.xml (`bms-samples-android-bluelist\bluelist\app\src\main\res\values\strings.xml`) and enter the same Facebook AppId to the ```facebook_app_id``` value.
-**Note:** If you switch from Facebbok auth to Google auth, make sure the ```facebook_app_id``` value is empty or else the Response Listeners will conflict and throw null pointer errors.
 
 [Learn more about using Facebook as an identity provider](https://www.ng.bluemix.net/docs/services/mobileaccess/security/facebook/t_fb_config.html)    
 
@@ -76,6 +75,8 @@ For the Bluelist sample, you will need to make sure your Google Play package nam
 ####Google authentication
 
 [Learn more about using Google as an identity provider](https://www.ng.bluemix.net/docs/services/mobileaccess/security/google/t_google_config.html)
+
+**Note:** If you switch from Facebbok auth to Google auth, make sure the ```facebook_app_id``` value is empty or else the wrong Response Listener will react.
 
 ####Custom authentication
 
@@ -99,7 +100,7 @@ Add the downloaded binaries to the appropriate folders within your app structure
 - Add the required `ICU ZIP` file to your app `assets` folder.
 - Add `sqlcipher.jar` as a file dependency. You can use the Dependencies tab under Open Module Settings, from the context menu of the Android Studio app folder. (This is done in the build.gradle file for you already)
 - Uncomment the `keyProviderPw` in the `bluelist.properties` file.
-- Uncomment line 213 in `BlueListApplication.java`.
+- Uncomment line 43 and 213 in `BlueListApplication.java`.
 - Before creating the database for the first time, change the value to a new password.
 
 To use `SQLCipher` commercially, you must obtain the necessary license.
