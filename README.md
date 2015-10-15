@@ -48,7 +48,7 @@ Deploy the Node.js app to Bluemix with the `cf` cli:
 ### Configure the front end in the Bluelist sample
 1. Download and extract the most recent version of [Gradle](http://gradle.org/) onto your machine.
 2. Open Android Studio and open the Android Bluelist Sample by selecting the build.gradle file.
-   - **File** --> **Open** --> select `bms-samples-android-bluelist\bluelist\app\build.gradle`.
+   - **File** --> **Open** --> select `bms-samples-android-bluelist\bluelist`.
 3. When prompted to use the default Gradle distribution, click **Cancel**, and enter the path to your local Gradle distribution that you downloaded in step 1.
 4. Watch Gradle automatically pull in the required dependencies!
 
