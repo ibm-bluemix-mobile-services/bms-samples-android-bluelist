@@ -21,7 +21,7 @@ Before you can run the Bluelist application, you must set up an app on Bluemix. 
 	- Select **Add credentials** --> **Api Key** --> **Server Key** --> **Create**
 	- Copy the Server key you just created and the GCM Project number into the Push Notifications configuration dashboard
 
-### Deploy the Bluelist NodeJS application to Bluemix (If using Custom Auth)
+### Deploy the Bluelist NodeJS application to Bluemix 
 You **must** use the Node.js runtime to host the Bluelist NodeJS application. Cloudant recommends operations that need 'admin' access to be performed in server side code.  A sample Node.js app for Bluelist is included in this repository.
 
 Update the name, host and domain in the [NodeJS/manifest.yml](NodeJS/manifest.yml) file to match your Bluemix backend.
