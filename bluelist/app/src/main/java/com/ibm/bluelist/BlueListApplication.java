@@ -506,7 +506,7 @@ public class BlueListApplication extends Application {
     private void enroll(final Callback callback) {
         String enroll = mAppRoute.getScheme() + "://" + mAppRoute.getHost() + "/bluelist/enroll";
         final Request request = new Request(enroll, Request.PUT);
-        request.send(new ResponseListener() {
+        request.send(getApplicationContext(),new ResponseListener() {
 
             @Override
             public void onSuccess(Response response) {
@@ -557,7 +557,7 @@ public class BlueListApplication extends Application {
     private void sessionCookie(final Callback callback) {
         String session = mAppRoute.getScheme() + "://" + mAppRoute.getHost() + "/bluelist/sessioncookie";
         final Request request = new Request(session, Request.POST);
-        request.send(new ResponseListener() {
+        request.send(getApplicationContext(),new ResponseListener() {
 
             @Override
             public void onSuccess(Response response) {
