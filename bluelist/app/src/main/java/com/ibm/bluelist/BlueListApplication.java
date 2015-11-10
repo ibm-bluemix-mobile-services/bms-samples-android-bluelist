@@ -450,7 +450,7 @@ public class BlueListApplication extends Application {
         if (enable) {
             push.register(listener);
         } else {
-            push.unregisterDevice(listener);
+            push.unregister(listener);
         }
     }
 
