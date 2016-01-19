@@ -27,7 +27,6 @@ import com.cloudant.sync.query.IndexManager;
 import com.cloudant.sync.query.QueryResult;
 import com.cloudant.sync.replication.Replicator;
 import com.cloudant.sync.replication.ReplicatorBuilder;
-import com.ibm.mobileclientaccess.clientsdk.android.auth.google.GoogleAuthenticationManager;
 import com.ibm.mobilefirstplatform.clientsdk.android.core.api.BMSClient;
 import com.ibm.mobilefirstplatform.clientsdk.android.core.api.Request;
 import com.ibm.mobilefirstplatform.clientsdk.android.core.api.Response;
@@ -39,6 +38,7 @@ import com.ibm.mobilefirstplatform.clientsdk.android.security.api.Authentication
 import com.ibm.mobilefirstplatform.clientsdk.android.security.api.AuthenticationListener;
 import com.ibm.mobilefirstplatform.clientsdk.android.security.api.AuthorizationManager;
 import com.ibm.mobilefirstplatform.clientsdk.android.security.facebookauthentication.FacebookAuthenticationManager;
+import com.ibm.mobilefirstplatform.clientsdk.android.security.googleauthentication.GoogleAuthenticationManager;
 
 //import net.sqlcipher.database.SQLiteDatabase;
 
@@ -174,8 +174,8 @@ public class BlueListApplication extends Application {
         }
 
         // The below 3 method calls will use whatever the backend MCA is configured with
-        FacebookAuthenticationManager.getInstance().registerDefaultAuthenticationListener(getApplicationContext());
-        GoogleAuthenticationManager.getInstance().registerDefaultAuthenticationListener(getApplicationContext());
+        FacebookAuthenticationManager.getInstance().register(getApplicationContext());
+        GoogleAuthenticationManager.getInstance().register(getApplicationContext());
         // Register Challenge Handler for custom auth
         client.registerAuthenticationListener(CUSTOM_AUTH_REALM_NAME, new AuthenticationListener() {
 
