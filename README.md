@@ -68,7 +68,7 @@ From MCA Dashboard select Facebook and enter your FB appID.
 
 In the Bluelist sample navigate to the strings.xml (`bms-samples-android-bluelist\bluelist\app\src\main\res\values\strings.xml`) and enter the same Facebook AppId to the ```facebook_app_id``` value.
 
-[Learn more about using Facebook as an identity provider](https://www.ng.bluemix.net/docs/services/mobileaccess/security/facebook/t_fb_config.html)    
+[Learn more about using Facebook as an identity provider](https://www.bluemix.net/docs/services/mobileaccess/facebook-auth-android.html)    
 
 For the Bluelist sample, you will need to make sure your Google Play package name in your Facebook app is `com.ibm.bluelist` and that your class name is `com.ibm.bluelist.SplashActivity`.
 
@@ -77,7 +77,7 @@ For the Bluelist sample, you will need to make sure your Google Play package nam
 A valid Android OAuth 2.0 Client ID needs to be configured in the MCA Dashboard.
 From MCA Dashboard select Google and enter your Android Client ID.
 
-[Learn more about using Google as an identity provider](https://www.ng.bluemix.net/docs/services/mobileaccess/security/google/t_google_config.html)
+[Learn more about using Google as an identity provider](https://www.bluemix.net/docs/services/mobileaccess/google-auth-android.html)
 
 **Note:** If you switch from Facebbok auth to Google auth, make sure the ```facebook_app_id``` value is empty or else the wrong Response Listener will react.
 
@@ -88,7 +88,7 @@ From MCA Dashboard select Google and enter your Android Client ID.
 
 The User `Yotem` with password `456` is hard coded into the sample and will authenticate automatically.
 
-[Learn more about configuring a custom identity provider](https://www.ng.bluemix.net/docs/services/mobileaccess/security/custom/r_custom_auth.html)
+[Learn more about configuring a custom identity provider](https://www.bluemix.net/docs/services/mobileaccess/custom-auth.html)
 
 ### Enabling Encryption:
 
@@ -114,7 +114,7 @@ By default, encryption is not enabled until an `encryptionPassword` is provided 
 
 For more information on Encrypting Data please see the following doc:
 
-[Encrypting data on a the device](https://www.ng.bluemix.net/docs/services/data/index.html#t_data_encrypt)
+[Encrypting data on a the device](https://www.bluemix.net/docs/services/data/index.html#t_data_encrypt)
 
 
 
@@ -131,7 +131,7 @@ Notice that your data items have persisted. You now have data on the cloud!
 
 A simple Android sample is also available that checks your connection with the backend auth server. It can be found here:
 
-- [bluelist-android](https://github.com/ibm-bluemix-mobile-services/bms-samples-android-helloworld)
+- [android-helloWorld](https://github.com/ibm-bluemix-mobile-services/bms-samples-android-helloworld)
 
 ### Register Device for Push
 Run the App on a real device or Simulator.
@@ -161,7 +161,7 @@ When you receive the push message on the Android device you can swipe the messag
 The IBM Mobile Client Access for Bluemix service gives your mobile application security. Cloudant has a separate security model.  The Cloudant and Mobile Client Access security models can be integrated using a small NodeJS application.  We demonstrate this integration in our [Bluelist Android Sample](https://github.com/ibm-bluemix-mobile-services/bms-samples-android-bluelist).  See the NodeJS folder for the application.
 
 ## BlueList NodeJS Sample
-To understand the BlueList NodeJS sample that is included with BlueList, it is important to understand both [Cloudant Security](https://cloudant.com/for-developers/faq/auth/) and [Mobile Client Access](https://www.ng.bluemix.net/docs/services/mobileaccess/index.html). Once you have this foundation, the BlueList NodeJS sample is simple to understand.
+To understand the BlueList NodeJS sample that is included with BlueList, it is important to understand both [Cloudant Security](https://cloudant.com/for-developers/faq/auth/) and [Mobile Client Access](https://www.bluemix.net/docs/services/mobileaccess/index.html). Once you have this foundation, the BlueList NodeJS sample is simple to understand.
 
 The BlueList NodeJS sample has two primary functions:
 	1. Exchange MCA OAuth tokens for Cloudant session cookies
