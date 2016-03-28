@@ -6,9 +6,6 @@ Clone the sample from Github with the following command:
 
     git clone https://github.com/ibm-bluemix-mobile-services/bms-samples-android-bluelist
 
-## Setting up the Bluelist sample
-For more information see [Getting started with IBM MobileFirst Platform for Android](https://www.ng.bluemix.net/docs/starters/mobilefirst/gettingstarted/bluelist_sample_android.html).
-
 ### Configure the back end for your Bluelist application
 Before you can run the Bluelist application, you must set up an app on Bluemix.  By setting up this app, service instances for the data, push, security, and monitoring functions of the app are configured.
 
